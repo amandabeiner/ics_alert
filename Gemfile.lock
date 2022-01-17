@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    chronic (0.10.2)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     ffi (1.15.5)
@@ -37,6 +38,8 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8)
+    whenever (1.0.0)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -44,6 +47,7 @@ PLATFORMS
 DEPENDENCIES
   http
   sinatra
+  whenever
 
 BUNDLED WITH
    1.17.2
