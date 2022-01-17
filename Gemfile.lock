@@ -46,6 +46,7 @@ PLATFORMS
 
 DEPENDENCIES
   http
+  rake
   sinatra
   whenever
 
