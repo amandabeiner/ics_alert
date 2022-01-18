@@ -2,3 +2,5 @@
 
 require './app'
 run App
+
+$stdout.sync = true

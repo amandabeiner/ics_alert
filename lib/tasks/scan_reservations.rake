@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require './reservation_feed'
+require './reservation_scanner'
 require 'dotenv/tasks'
 
 desc 'search reservations'
 task :scan_reservations, :dotenv do
-  ReservationFeed.events
+  ReservationScanner.event_ending_tomorrow?
 end
