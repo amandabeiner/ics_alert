@@ -2,15 +2,21 @@
 
 source 'https://rubygems.org'
 
-gem 'activesupport'
 gem 'dotenv'
 gem 'http'
 gem 'icalendar'
-gem 'pry'
 gem 'rake'
-gem 'rspec'
 gem 'sinatra'
-gem 'timecop'
 gem 'twilio-ruby'
-gem 'webmock'
 gem 'whenever'
+
+group :test do
+  gem 'activesupport'
+  gem 'rspec'
+  gem 'timecop'
+  gem 'webmock'
+end
+
+group :test, :development do
+  gem 'pry'
+end
