@@ -12,14 +12,14 @@ class ReservationScanner
   def self.alert_for_upcoming_reservation
     response = fetch_calendar_feed
     calendar = Calendar.new(feed: response.body)
-    send_text_alert_for(calendar) if calendar.event_ending_tomorrow?
+    send_text_alert if calendar.event_ending_tomorrow?
   end
 
   def self.fetch_calendar_feed
     CalendarApi.fetch_calendar_feed
   end
 
-  def self.send_text_alert_for(_calendar)
+  def self.send_text_alert
     TwilioApi.send_text_message
   end
 end
