@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './calendar'
+require './lib/calendar'
 
 RSpec.describe Calendar do
   describe '#event_ending_tomorrow?' do

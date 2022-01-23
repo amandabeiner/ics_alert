@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './reservation_scanner'
+require_relative '../reservation_scanner'
 require 'dotenv/tasks'
 
 desc 'search reservations'
