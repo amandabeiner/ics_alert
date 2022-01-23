@@ -9,9 +9,9 @@ gem 'rake'
 gem 'sinatra'
 gem 'twilio-ruby'
 gem 'whenever'
+gem 'activesupport'
 
 group :test do
-  gem 'activesupport'
   gem 'rspec'
   gem 'timecop'
   gem 'webmock'
