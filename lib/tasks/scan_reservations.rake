@@ -5,5 +5,5 @@ require 'dotenv/tasks'
 
 desc 'search reservations'
 task :scan_reservations, :dotenv do
-  ReservationScanner.event_ending_tomorrow?
+  ReservationScanner.alert_for_upcoming_reservation
 end

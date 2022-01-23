@@ -2,13 +2,24 @@
 
 require_relative './calendar_api'
 require_relative './calendar'
+require_relative './twilio_api'
 
-# Retrieves the .ics file and checks whether it contains an event ending
-# tomorrow
+# Public: retrieves the .ics file for a calendar feed. Sends a text alert if the
+#         feed contains an event ending the next day.
+#
+# returns nothing.
 class ReservationScanner
-  def self.event_ending_tomorrow?
-    response = CalendarApi.fetch_calendar_feed
+  def self.alert_for_upcoming_reservation
+    response = fetch_calendar_feed
     calendar = Calendar.new(feed: response.body)
-    puts calendar.event_ending_tomorrow?
+    send_text_alert_for(calendar) if calendar.event_ending_tomorrow?
+  end
+
+  def self.fetch_calendar_feed
+    CalendarApi.fetch_calendar_feed
+  end
+
+  def self.send_text_alert_for(_calendar)
+    TwilioApi.send_text_message
   end
 end
