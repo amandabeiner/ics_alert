@@ -9,7 +9,6 @@ gem 'icalendar'
 gem 'rake'
 gem 'sinatra'
 gem 'twilio-ruby'
-gem 'whenever'
 
 group :test do
   gem 'rspec'

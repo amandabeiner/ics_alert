@@ -8,7 +8,6 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    chronic (0.10.2)
     coderay (1.1.3)
     concurrent-ruby (1.1.9)
     crack (0.4.5)
@@ -115,8 +114,6 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    whenever (1.0.0)
-      chronic (>= 0.6.3)
 
 PLATFORMS
   x86_64-darwin-20
@@ -134,7 +131,6 @@ DEPENDENCIES
   timecop
   twilio-ruby
   webmock
-  whenever
 
 BUNDLED WITH
    2.3.5
