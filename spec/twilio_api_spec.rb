@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require './lib/twilio_api'
-require 'pry'
 
 RSpec.describe TwilioApi do
   describe '#send_text_message' do

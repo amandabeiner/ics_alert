@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 
+gem 'activesupport'
 gem 'dotenv'
 gem 'http'
 gem 'icalendar'
@@ -9,7 +10,6 @@ gem 'rake'
 gem 'sinatra'
 gem 'twilio-ruby'
 gem 'whenever'
-gem 'activesupport'
 
 group :test do
   gem 'rspec'

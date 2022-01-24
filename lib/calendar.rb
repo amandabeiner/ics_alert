@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+require 'tzinfo'
 require 'icalendar'
-require 'pry'
+require 'icalendar/tzinfo'
 
 # Parses the .ics feed into an Icalendar object
 class Calendar
@@ -11,7 +12,7 @@ class Calendar
   end
 
   def event_ending_tomorrow?
-    event_ending_on?(date: tomorrow)
+    event_ending_on?(time: tomorrow)
   end
 
   private
@@ -24,11 +25,16 @@ class Calendar
     @calendar.first.events
   end
 
-  def event_ending_on?(date:)
-    events.any? { |e| e.dtend == date }
+  def event_ending_on?(time:)
+    events.any? { |e| e.dtend.to_date == time.to_date }
+  end
+
+  def timezone
+    zone_id = @calendar.first.custom_properties['x_wr_timezone'][0] || 'America/New_York'
+    TZInfo::Timezone.get(zone_id.to_s)
   end
 
   def tomorrow
-    Date.today + 1
+    Time.now.in_time_zone(timezone) + 1.day
   end
 end
