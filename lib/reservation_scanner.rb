@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'active_support'
-require 'active_support/testing/time_helpers'
 require_relative './calendar_api'
 require_relative './calendar'
 require_relative './twilio_api'
