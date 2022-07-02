@@ -2,7 +2,6 @@
 
 require_relative './calendar_api'
 require_relative './calendar'
-require 'pry'
 require_relative './twilio_api'
 
 # Public: retrieves the .ics file for a calendar feed. Sends a text alert if the
