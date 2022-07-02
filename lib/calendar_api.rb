@@ -3,11 +3,12 @@
 require 'net/http'
 require 'uri'
 require 'dotenv/load'
+require 'httparty'
 # Fetches the .ics feed of reservations
 class CalendarApi
   def self.fetch_feed_for(calendar_id)
     uri = uri_for(calendar_id)
-    Net::HTTP.get_response uri
+    HTTParty.get(uri, follow_redirects: true)
   rescue StandardError => e
     puts e.message
   end
