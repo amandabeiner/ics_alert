@@ -14,12 +14,12 @@ class ReservationScanner
       calendar_key = cal.match(/^CALENDAR_ICS_\d/)[0]
       response = CalendarApi.fetch_feed_for(calendar_key)
       calendar = Calendar.new(feed: response.body)
-      send_text_alert_for(calendar_key) if calendar.event_ending_tomorrow?
+      send_text_alerts_for(calendar_key) if calendar.event_ending_tomorrow?
     end
   end
 
-  def self.send_text_alert_for(calendar)
-    TwilioApi.send_text_message_for(calendar)
+  def self.send_text_alerts_for(calendar)
+    TwilioApi.send_text_messages_for(calendar)
   end
 
   def self.calendar_ids
