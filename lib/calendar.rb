@@ -32,19 +32,8 @@ class Calendar
     events.any? { |event| ends_next_day?(event) }
   end
 
-  # Private: Is there an event ending the next day?
-  #
-  # All-day events are are Date objects without a Time, which end at midnight.
-  # These events technically end in two days
-  # We want to count events ending in two days only if they end at midnight
-  #
-  # Returns Boolean
   def ends_next_day?(event)
-    event.dtend.to_date == if event.dtend.is_a?(Icalendar::Values::Date)
-                             day_after_tomorrow.to_date
-                           else
-                             tomorrow.to_date
-                           end
+    event.dtend.to_date == tomorrow.to_date
   end
 
   def events
@@ -60,9 +49,5 @@ class Calendar
 
   def tomorrow
     Time.now.in_time_zone(timezone) + 1.day
-  end
-
-  def day_after_tomorrow
-    (tomorrow + 1.day).beginning_of_day
   end
 end

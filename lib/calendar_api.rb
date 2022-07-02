@@ -3,7 +3,6 @@
 require 'net/http'
 require 'uri'
 require 'dotenv/load'
-
 # Fetches the .ics feed of reservations
 class CalendarApi
   def self.fetch_feed_for(calendar_id)

@@ -25,15 +25,6 @@ RSpec.describe Calendar do
       end
     end
 
-    it 'returns true when the calendar contains an event that ends at midnight the day after tomorrow' do
-      ending_date = Date.civil(2022, 2, 15)
-      feed = build_feed(end_date: ending_date)
-      Timecop.freeze(Date.new(2022, 2, 13)) do
-        calendar = Calendar.new(feed: feed)
-        expect(calendar.event_ending_tomorrow?).to eq(true)
-      end
-    end
-
     it 'returns false when the calendar does not contain an event that ends the next day' do
       ending_date = DateTime.civil(2022, 2, 18)
       feed = build_feed(end_date: ending_date)
