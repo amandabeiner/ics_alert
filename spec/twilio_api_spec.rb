@@ -9,13 +9,13 @@ RSpec.describe TwilioApi do
     alert_body = 'Alert!'
 
     before do
-      ENV['FROM_PHONE_NUMBER'] = from_phone_number
-      ENV['TO_PHONE_NUMBER'] = to_phone_number
-      ENV['ALERT_BODY'] = alert_body
+      ENV['CALENDAR_ICS_1_FROM_PHONE_NUMBER'] = from_phone_number
+      ENV['CALENDAR_ICS_1_TO_PHONE_NUMBER'] = to_phone_number
+      ENV['CALENDAR_ICS_1_ALERT_BODY'] = alert_body
     end
 
     it 'creates a message with the correct arguments' do
-      TwilioApi.send_text_message
+      TwilioApi.send_text_message_for('CALENDAR_ICS_1')
       message = Twilio::REST::Client.messages.last
 
       expect(message[:from]).to eq(from_phone_number)

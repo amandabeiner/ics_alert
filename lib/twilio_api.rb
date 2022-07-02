@@ -4,15 +4,16 @@ require 'twilio-ruby'
 
 # Public: communicate with the Twilio API
 class TwilioApi
-  def self.send_text_message
-    new.send_text_message
+  def self.send_text_message_for(calendar_id)
+    new.send_text_message_for(calendar_id)
   end
 
-  def send_text_message
+  def send_text_message_for(calendar_id)
+    # puts "sending text message for #{calendar_id}"
     twilio_client.messages.create(
-      from: ENV['FROM_PHONE_NUMBER'],
-      to: ENV['TO_PHONE_NUMBER'],
-      body: ENV['ALERT_BODY']
+      from: ENV["#{calendar_id}_FROM_PHONE_NUMBER"],
+      to: ENV["#{calendar_id}_TO_PHONE_NUMBER"],
+      body: ENV["#{calendar_id}_ALERT_BODY"]
     )
   end
 

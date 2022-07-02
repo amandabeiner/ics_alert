@@ -9,17 +9,21 @@ require_relative './twilio_api'
 #
 # returns nothing.
 class ReservationScanner
+  CALENDAR_ID_REGEX = /^CALENDAR_ICS_\d/
   def self.alert_for_upcoming_reservation
-    response = fetch_calendar_feed
-    calendar = Calendar.new(feed: response.body)
-    send_text_alert if calendar.event_ending_tomorrow?
+    calendar_envs.each do |cal|
+      calendar_key = cal.match(CALENDAR_ID_REGEX)[0]
+      response = CalendarApi.fetch_feed_for(calendar_key)
+      calendar = Calendar.new(feed: response.body)
+      send_text_alert_for(calendar_key) if calendar.event_ending_tomorrow?
+    end
   end
 
-  def self.fetch_calendar_feed
-    CalendarApi.fetch_calendar_feed
+  def self.send_text_alert_for(calendar)
+    TwilioApi.send_text_message_for(calendar)
   end
 
-  def self.send_text_alert
-    TwilioApi.send_text_message
+  def self.calendar_envs
+    ENV.keys.filter { |k| k.match(CALENDAR_ID_REGEX) }
   end
 end

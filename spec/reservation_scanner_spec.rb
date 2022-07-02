@@ -17,7 +17,7 @@ RSpec.describe ReservationScanner do
     end
 
     before do
-      ENV['CALENDAR_ICS_URL'] = calendar_url
+      ENV['CALENDAR_ICS_1_URL'] = calendar_url
     end
 
     it 'sends a text message if there is a calendar event ending the next day' do
