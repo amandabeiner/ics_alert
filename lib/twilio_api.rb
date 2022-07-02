@@ -9,12 +9,12 @@ class TwilioApi
   end
 
   def send_text_message_for(calendar_id)
-    # puts "sending text message for #{calendar_id}"
     twilio_client.messages.create(
       from: ENV["#{calendar_id}_FROM_PHONE_NUMBER"],
       to: ENV["#{calendar_id}_TO_PHONE_NUMBER"],
       body: ENV["#{calendar_id}_ALERT_BODY"]
     )
+    puts "queued text message for #{ENV["#{calendar_id}_NAME"]}"
   end
 
   private
