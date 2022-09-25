@@ -9,7 +9,6 @@ gem 'http'
 gem 'httparty'
 gem 'icalendar'
 gem 'rake'
-gem 'sinatra'
 gem 'twilio-ruby'
 
 group :test do
