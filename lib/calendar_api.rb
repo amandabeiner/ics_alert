@@ -8,20 +8,37 @@ require 'pry'
 require_relative './twilio_api'
 # Fetches the .ics feed of reservations
 class CalendarApi
-  def self.fetch_feed_for(calendar_id)
-    uri = uri_for(calendar_id)
-    response = HTTParty.get(uri, follow_redirects: true)
-    unless response.ok?
-      TwilioApi.send_support_text_message(calendar_id)
+  RETRIES_LIMIT = 5
 
-      raise "Error fetching calendar #{calendar_id}"
-    end
-    raise "Error fetching calendar #{calendar_id}" unless response.ok?
+  def self.fetch_feed_for(calendar_id)
+    new(calendar_id).fetch_with_retry
+  end
+
+  def initialize(calendar_id)
+    @calendar_id = calendar_id
+    @retries = 0
+  end
+
+  def fetch_with_retry
+    response = HTTParty.get(uri, follow_redirects: true)
+
+    report_and_retry(response) unless response.ok?
 
     response
   end
 
-  def self.uri_for(calendar_id)
+  private
+
+  def report_and_retry
+    puts "Failed to fetch #{calendar_id}: #{response.body}"
+    @retries += 1
+    retries >= RETRY_LIMIT ? TwilioApi.send_support_text_message(calendar_id) : fetch_with_retry
+    puts "Retried fetch, attempt: #{retries}"
+  end
+
+  def uri
     URI.parse ENV["#{calendar_id}_URL"]
   end
+
+  attr_reader :retries, :calendar_id
 end
