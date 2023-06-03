@@ -2,8 +2,6 @@
 
 require './lib/reservation_scanner'
 
-DATE_TIME_FORMAT = '%Y%m%dT%H%M%SZ'
-DATE_FORMAT = '%Y%m%d'
 RSpec.describe ReservationScanner do
   describe '#alert_for_upcoming_reservation' do
     calendar_url = 'https://example.ics'

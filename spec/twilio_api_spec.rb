@@ -12,7 +12,7 @@ RSpec.describe TwilioApi do
       ENV['CALENDAR_ICS_1_FROM_PHONE_NUMBER'] = from_phone_number
       ENV['CALENDAR_ICS_1_TO_PHONE_NUMBER'] = to_phone_number
       ENV['CALENDAR_ICS_1_ALERT_BODY'] = alert_body
-      ENV['CALENDAR_ICS_2_FROM_PHONE_NUMBER'] = "#{from_phone_number},#{to_phone_number}"
+      ENV['CALENDAR_ICS_2_TO_PHONE_NUMBER'] = "#{from_phone_number},#{to_phone_number}"
     end
 
     it 'creates a message with the correct arguments' do

@@ -8,6 +8,7 @@ RSpec.describe CalendarApi do
     calendar_key = 'CALENDAR_ICS_1'
     before do
       ENV["#{calendar_key}_URL"] = calendar_url
+      ENV["#{calendar_key}_URL"] = calendar_url
     end
 
     it 'uses the calendar uri from the ENV' do
@@ -15,7 +16,7 @@ RSpec.describe CalendarApi do
 
       CalendarApi.fetch_feed_for(calendar_key)
 
-      WebMock.should have_requested(:get, calendar_url)
+      expect(WebMock).to have_requested(:get, calendar_url)
     end
   end
 end
