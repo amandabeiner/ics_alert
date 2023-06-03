@@ -9,6 +9,7 @@ require_relative './twilio_api'
 # Fetches the .ics feed of reservations
 class CalendarApi
   RETRY_LIMIT = 5
+  SLEEP_DURATION = [5, 10, 20, 30, 30]
 
   def self.fetch_feed_for(calendar_id)
     new(calendar_id).fetch_with_retry
@@ -32,6 +33,7 @@ class CalendarApi
   def report_and_retry(response)
     puts "Failed to fetch #{calendar_id}: #{response.body}"
     @retries += 1
+    sleep(SLEEP_DURATION[retries - 1])
     puts "Retrying fetch, attempt: #{retries}"
     retries >= RETRY_LIMIT ? TwilioApi.send_support_text_message(calendar_id) : fetch_with_retry
   end

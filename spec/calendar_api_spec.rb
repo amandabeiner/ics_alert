@@ -9,6 +9,7 @@ RSpec.describe CalendarApi do
     success_response = { status: 200 }
     error_response = { status: 404, body: 'not found' }
     before do
+      allow_any_instance_of(CalendarApi).to receive(:sleep)
       ENV["#{calendar_key}_URL"] = calendar_url
       ENV["#{calendar_key}_URL"] = calendar_url
     end
